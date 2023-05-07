@@ -1,0 +1,20 @@
+version: "3.9"
+
+networks:
+  php_advanced:
+    driver: bridge
+
+
+services:
+  app:
+    build:
+      context: docker/php
+    restart: always
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8081:80"
+    networks:
+      - php_advanced
+
+

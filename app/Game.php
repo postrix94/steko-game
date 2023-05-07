@@ -1,0 +1,38 @@
+<?php
+
+
+namespace App;
+
+use App\Interfaces\IGame;
+use App\Traits\TGame;
+
+class Game implements IGame
+{
+    use TGame;
+
+    private int $bidCommandA;
+    private int $bidCommandB;
+    private int $resultCommandA;
+    private int $resultCommandB;
+
+    public function __construct(string $bid,string $resultMatch)
+    {
+        $this->setBid($bid);
+        $this->setResultMatch($resultMatch);
+    }
+
+    public function startGame(): int
+    {
+
+       if(($this->bidCommandA === $this->resultCommandA) && ($this->bidCommandB === $this->resultCommandB) ) {
+           return 2;
+        }else if (($this->bidCommandA > $this->bidCommandB) && ($this->resultCommandA > $this->resultCommandB)) {
+           return 1;
+        }else if (($this->bidCommandA < $this->bidCommandB) && ($this->resultCommandA < $this->resultCommandB)) {
+           return 1;
+       }
+
+       return 0;
+    }
+
+}

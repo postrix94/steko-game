@@ -23,14 +23,11 @@ class Game implements IGame
 
     public function startGame(): int
     {
-
-       if(($this->bidCommandA === $this->resultCommandA) && ($this->bidCommandB === $this->resultCommandB) ) {
-           return 2;
-        }else if (($this->bidCommandA > $this->bidCommandB) && ($this->resultCommandA > $this->resultCommandB)) {
-           return 1;
-        }else if (($this->bidCommandA < $this->bidCommandB) && ($this->resultCommandA < $this->resultCommandB)) {
-           return 1;
-       }
+        if($this->isCorrectScore()) {
+            return 2;
+        }else if($this->isMatchOutcome()) {
+            return 1;
+        }
 
        return 0;
     }
